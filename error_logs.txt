@@ -3,3 +3,4 @@ RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noE
   && pnpm -C apps/api exec tsc -p tsconfig.build.json
 
 src/routes/logs/logs.routes.ts(26,25): error TS2554: Expected 2-3 arguments, but got 1. 
+
