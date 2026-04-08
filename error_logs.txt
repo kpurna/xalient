@@ -1,6 +1,11 @@
-RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json \
+RUN pnpm -C apps/frontend build
 
-  && pnpm -C apps/api exec tsc -p tsconfig.build.json
 
-src/routes/logs/logs.routes.ts(26,25): error TS2554: Expected 2-3 arguments, but got 1. 
+> frontend@0.0.0 build /repo/apps/frontend
+> tsc -b && vite build
+src/routes/logs/index.tsx(41,11): error TS2353: Object literal may only specify known properties, and 'device' does not exist in type '{ startTime?: unknown; endTime?: unknown; tag?: string | undefined; limit?: unknown; }'.
+src/routes/logs/index.tsx(58,55): error TS2339: Property 'logs' does not exist on type '{ time: string; tag: string | null; data: { [x: string]: never; }; }[]'.
+src/routes/logs/index.tsx(61,67): error TS2339: Property 'total' does not exist on type '{ time: string; tag: string | null; data: { [x: string]: never; }; }[]'.
+ELIFECYCLE  Command failed with exit code 2. 
 
+end
