@@ -1,433 +1,66 @@
-api-1  | Dropping existing tables...
-api-1  | [dotenv@17.2.1] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
-api-1  | All tables dropped successfully.
-api-1  | Running migrations...
-api-1  | [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
-api-1  | Seeding database...
-api-1  | [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
-api-1  | No seeder defined for table: alerts
-api-1  | Starting API server...
-api-1  | [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-api-1  | [dotenv@17.2.1] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
-api-1  | Server is running on port http://localhost:3000
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)
-api-1  | params: 2026-04-01T11:33:58.418Z,2026-04-08T11:33:58.418Z
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)',
-api-1  |   params: [ '2026-04-01T11:33:58.418Z', '2026-04-08T11:33:58.418Z' ],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async allAlerts (file:///app/dist/src/routes/device/device.js:89:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648038470,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/alerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":1,"responseTime":38,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" where (\"alarms\".\"alarmraisedtime\" >= $1 and \"alarms\".\"alarmraisedtime\" <= $2)\nparams: 2026-04-01T11:33:58.418Z,2026-04-08T11:33:58.418Z"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc  
-api-1  | params:
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc',
-api-1  |   params: [],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async deviceAlerts (file:///app/dist/src/routes/device/device.js:172:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648038479,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/deviceAlerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":2,"responseTime":37,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" order by \"alarms\".\"alarmraisedtime\" desc\nparams: "}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)
-api-1  | params: 2026-04-01T11:38:07.140Z,2026-04-08T11:38:07.140Z
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)',
-api-1  |   params: [ '2026-04-01T11:38:07.140Z', '2026-04-08T11:38:07.140Z' ],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async allAlerts (file:///app/dist/src/routes/device/device.js:89:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648287174,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/alerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":3,"responseTime":29,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" where (\"alarms\".\"alarmraisedtime\" >= $1 and \"alarms\".\"alarmraisedtime\" <= $2)\nparams: 2026-04-01T11:38:07.140Z,2026-04-08T11:38:07.140Z"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc  
-api-1  | params:
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc',
-api-1  |   params: [],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async deviceAlerts (file:///app/dist/src/routes/device/device.js:172:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648287176,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/deviceAlerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":4,"responseTime":29,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" order by \"alarms\".\"alarmraisedtime\" desc\nparams: "}
-api-1  | {"level":30,"time":1775648289411,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/","method":"GET","headers":{"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","cache-control":"max-age=0","connection":"keep-alive","dnt":"1","host":"localhost:3000","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"document","sec-fetch-mode":"navigate","sec-fetch-site":"none","sec-fetch-user":"?1","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0"}},"res":{"status":404,"headers":{}},"reqId":5,"responseTime":0,"msg":"Request completed"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)
-api-1  | params: 2026-04-01T11:38:20.399Z,2026-04-08T11:38:20.399Z
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)',
-api-1  |   params: [ '2026-04-01T11:38:20.399Z', '2026-04-08T11:38:20.399Z' ],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async allAlerts (file:///app/dist/src/routes/device/device.js:89:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648300431,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/alerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":6,"responseTime":30,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" where (\"alarms\".\"alarmraisedtime\" >= $1 and \"alarms\".\"alarmraisedtime\" <= $2)\nparams: 2026-04-01T11:38:20.399Z,2026-04-08T11:38:20.399Z"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc  
-api-1  | params:
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc',
-api-1  |   params: [],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async deviceAlerts (file:///app/dist/src/routes/device/device.js:172:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648300433,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/deviceAlerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":7,"responseTime":29,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" order by \"alarms\".\"alarmraisedtime\" desc\nparams: "}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)
-api-1  | params: 2026-04-01T11:38:22.451Z,2026-04-08T11:38:22.451Z
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)',
-api-1  |   params: [ '2026-04-01T11:38:22.451Z', '2026-04-08T11:38:22.451Z' ],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async allAlerts (file:///app/dist/src/routes/device/device.js:89:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648302476,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/alerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":8,"responseTime":21,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" where (\"alarms\".\"alarmraisedtime\" >= $1 and \"alarms\".\"alarmraisedtime\" <= $2)\nparams: 2026-04-01T11:38:22.451Z,2026-04-08T11:38:22.451Z"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc  
-api-1  | params:
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc',
-api-1  |   params: [],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async deviceAlerts (file:///app/dist/src/routes/device/device.js:172:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648302477,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/deviceAlerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":9,"responseTime":20,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" order by \"alarms\".\"alarmraisedtime\" desc\nparams: "}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)
-api-1  | params: 2026-04-01T11:40:30.774Z,2026-04-08T11:40:30.774Z
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" where ("alarms"."alarmraisedtime" >= $1 and "alarms"."alarmraisedtime" <= $2)',
-api-1  |   params: [ '2026-04-01T11:40:30.774Z', '2026-04-08T11:40:30.774Z' ],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async allAlerts (file:///app/dist/src/routes/device/device.js:89:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648430804,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/alerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":10,"responseTime":24,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" where (\"alarms\".\"alarmraisedtime\" >= $1 and \"alarms\".\"alarmraisedtime\" <= $2)\nparams: 2026-04-01T11:40:30.774Z,2026-04-08T11:40:30.774Z"}
-api-1  | DrizzleQueryError: Failed query: select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc  
-api-1  | params:
-api-1  |     at NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41:15)
-api-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |     at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |     ... 4 lines matching cause stack trace ...
-api-1  |     at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7
-api-1  |     at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |     at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/hono-base.js:201:25 {
-api-1  |   query: 'select "id", "alarmraisedtime", "alarmclearedtime", "alarmreportingtime", "alarmchangedtime", "alarmedobjecttype", "perceivedseverity", "probablecause", "btelementclass", "state", "externalalarmid", "btcustomer", "btsourcesystem", "btinstancename", "btcount", "btuserdefined", "btntnid", "btpewmso", "btaffectedcircuit", "btservername", "btsite", "sourcesystemid", "ackuserid", "acksystemid", "ackstate", "alarmtype", "plannedoutageindicator", "category", "incidentid", "specificproblem", "alarmdetails", "isrootcause", "correlatedalarm", "alarmedobject", "affectedservice", "parentalarm" from "alarms" order by "alarms"."alarmraisedtime" desc',
-api-1  |   params: [],
-api-1  |   cause: error: relation "alarms" does not exist
-api-1  |       at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
-api-1  |       at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:124:18
-api-1  |       at async NodePgPreparedQuery.queryWithCache (file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/pg-core/session.js:39:16)
-api-1  |       at async file:///app/node_modules/.pnpm/drizzle-orm@0.44.5_@types+pg@8.15.5_pg@8.16.3/node_modules/drizzle-orm/node-postgres/session.js:117:22
-api-1  |       at async deviceAlerts (file:///app/dist/src/routes/device/device.js:172:18)
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/validator/validator.js:81:5
-api-1  |       at async dispatch (file:///app/node_modules/.pnpm/hono@4.9.2/node_modules/hono/dist/compose.js:22:17)
-api-1  |       at async file:///app/node_modules/.pnpm/hono-pino@0.10.2_hono@4.9.2_pino@9.9.0/node_modules/hono-pino/dist/index.js:149:7 {
-api-1  |     length: 106,
-api-1  |     severity: 'ERROR',
-api-1  |     code: '42P01',
-api-1  |     detail: undefined,
-api-1  |     hint: undefined,
-api-1  |     position: '595',
-api-1  |     internalPosition: undefined,
-api-1  |     internalQuery: undefined,
-api-1  |     where: undefined,
-api-1  |     schema: undefined,
-api-1  |     table: undefined,
-api-1  |     column: undefined,
-api-1  |     dataType: undefined,
-api-1  |     constraint: undefined,
-api-1  |     file: 'parse_relation.c',
-api-1  |     line: '1466',
-api-1  |     routine: 'parserOpenTable'
-api-1  |   }
-api-1  | }
-api-1  | {"level":50,"time":1775648430806,"pid":1,"hostname":"0b294dc72c1f","req":{"url":"/api/deviceAlerts","method":"GET","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-GB,en;q=0.9,en-US;q=0.8,en-IE;q=0.7","connection":"close","dnt":"1","host":"localhost","referer":"http://localhost:5173/dashboard","sec-ch-ua":"\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Microsoft Edge\";v=\"146\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0","x-forwarded-for":"172.18.0.1","x-forwarded-proto":"http","x-real-ip":"172.18.0.1"}},"res":{"status":500,"headers":{}},"reqId":11,"responseTime":23,"msg":"Failed query: select \"id\", \"alarmraisedtime\", \"alarmclearedtime\", \"alarmreportingtime\", \"alarmchangedtime\", \"alarmedobjecttype\", \"perceivedseverity\", \"probablecause\", \"btelementclass\", \"state\", \"externalalarmid\", \"btcustomer\", \"btsourcesystem\", \"btinstancename\", \"btcount\", \"btuserdefined\", \"btntnid\", \"btpewmso\", \"btaffectedcircuit\", \"btservername\", \"btsite\", \"sourcesystemid\", \"ackuserid\", \"acksystemid\", \"ackstate\", \"alarmtype\", \"plannedoutageindicator\", \"category\", \"incidentid\", \"specificproblem\", \"alarmdetails\", \"isrootcause\", \"correlatedalarm\", \"alarmedobject\", \"affectedservice\", \"parentalarm\" from \"alarms\" order by \"alarms\".\"alarmraisedtime\" desc\nparams: "}
+migrate-1 |
+migrate-1 | [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️ load multiple .env files with { path: ['.env.local', '.env'] }
+migrate-1 | No seeder defined for table: alerts
+migrate-1 | file:///repo/node_modules/.pnpm/drizzle-orm@0.44.5_@
+types+pg@8.15.5_pg
+@8.16.3/node_modules/drizzle-orm/pg-core/session.js:41
+migrate-1 | throw new DrizzleQueryError(queryString, params, e);
+migrate-1 | ^
+migrate-1 |
+migrate-1 | DrizzleQueryError: Failed query: insert into "alarms" ("id", "alarmRaisedTime", "alarmClearedTime", "alarmedObjectType", "correlatedAlarm", "btCustomer", "alarmReportingTime", "alarmedObject", "alarmChangedTime", "perceivedSeverity", "probableCause", "btElementClass", "affectedService", "ackSystemId", "state", "externalAlarmId", "parentAlarm", "isRootCause", "btSourceSystem", "ackUserId", "btInstanceName", "btCount", "btUserDefined", "sourceSystemId", "btNtnId", "btPewMso", "btAffectedCircuit", "ackState", "alarmType", "specificProblem", "plannedOutageIndicator", "btServerName", "alarmDetails", "category", "incidentId", "btSite") values (
+1
+,
+1,2, 
+3
+,
+3,4, 
+5
+,
+5,6, 
+7
+,
+7,8, 
+9
+,
+9,10, 
+11
+,
+11,12, 
+13
+,
+13,14, 
+15
+,
+15,16, 
+17
+,
+17,18, 
+19
+,
+19,20, 
+21
+,
+21,22, 
+23
+,
+23,24, 
+25
+,
+25,26, 
+27
+,
+27,28, 
+29
+,
+29,30, 
+31
+,
+31,32, 
+33
+,
+33,34, 
+35
+,
+35,36),
+
+getting error while running the docker compose file at the line where it is migrating the data
