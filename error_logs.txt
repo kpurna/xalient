@@ -1,5 +1,8 @@
-src/components/sectionCards/index.tsx(28,34): error TS2339: Property 'btcustomer' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
-src/components/sectionCards/index.tsx(31,30): error TS2339: Property 'btsite' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
-src/components/sectionCards/index.tsx(34,31): error TS2339: Property 'alarmclearedtime' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
-src/components/sectionCards/index.tsx(39,36): error TS2339: Property 'perceivedseverity' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
-ELIFECYCLE  Command failed with exit code 2.
+Xaliant npulse simulated code get this container up and the ui is also working perfect
+[+] down 5/5
+ ✔ Container xalient-npulse-simulated-frontend-1 Removed                                                                                                                                                                           0.4s
+ ✔ Container xalient-npulse-simulated-api-1      Removed                                                                                                                                                                           1.3s
+ ✔ Container drizzle-postgres                    Removed                                                                                                                                                                           0.4s
+ ✔ Volume xalient-npulse-simulated_pulse_pgdata  Removed                                                                                                                                                                           0.0s
+ ✔ Network xalient-npulse-simulated_default      Removed 
+
