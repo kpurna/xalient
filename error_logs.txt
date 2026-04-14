@@ -1,8 +1,28 @@
-Xaliant npulse simulated code get this container up and the ui is also working perfect
-[+] down 5/5
- ✔ Container xalient-npulse-simulated-frontend-1 Removed                                                                                                                                                                           0.4s
- ✔ Container xalient-npulse-simulated-api-1      Removed                                                                                                                                                                           1.3s
- ✔ Container drizzle-postgres                    Removed                                                                                                                                                                           0.4s
- ✔ Volume xalient-npulse-simulated_pulse_pgdata  Removed                                                                                                                                                                           0.0s
- ✔ Network xalient-npulse-simulated_default      Removed 
+#32 [api build 8/8] RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json
+#32 8.845 src/app.ts(6,24): error TS2307: Cannot find module './routes/logs/logs.index.js' or its corresponding type declarations.
+#32 ERROR: process "/bin/sh -c printf '{\\n  \"extends\": \"./tsconfig.json\",\\n  \"compilerOptions\": {\\n    \"noEmit\": false,\\n    \"allowImportingTsExtensions\": false,\\n    \"outDir\": \"./dist\"\\n  }\\n}\\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json" did not complete successfully: exit code: 2
 
+#31 [frontend build 12/12] RUN pnpm -C apps/frontend build
+#31 CANCELED
+------
+ > [api build 8/8] RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json:
+8.845 src/app.ts(6,24): error TS2307: Cannot find module './routes/logs/logs.index.js' or its corresponding type declarations.
+------
+[+] up 0/2
+ - Image pulse-frontend:local    Building                                                                                                                                                                                         28.0s
+ - Image xalient-npulse-main-api Building                                                                                                                                                                                         28.0s
+api.Dockerfile:14
+
+--------------------
+
+  13 |     # Build API - emit JS to dist/
+
+  14 | >>> RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json \
+
+  15 | >>>   && pnpm -C apps/api exec tsc -p tsconfig.build.json
+
+  16 |
+
+--------------------
+
+target api: failed to solve: process "/bin/sh -c printf '{\\n  \"extends\": \"./tsconfig.json\",\\n  \"compilerOptions\": {\\n    \"noEmit\": false,\\n    \"allowImportingTsExtensions\": false,\\n    \"outDir\": \"./dist\"\\n  }\\n}\\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json" did not complete successfully: exit code: 2
