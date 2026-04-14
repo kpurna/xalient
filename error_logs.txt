@@ -26,3 +26,6 @@ api.Dockerfile:14
 --------------------
 
 target api: failed to solve: process "/bin/sh -c printf '{\\n  \"extends\": \"./tsconfig.json\",\\n  \"compilerOptions\": {\\n    \"noEmit\": false,\\n    \"allowImportingTsExtensions\": false,\\n    \"outDir\": \"./dist\"\\n  }\\n}\\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json" did not complete successfully: exit code: 2
+
+
+last
