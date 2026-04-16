@@ -1,32 +1,51 @@
-#33 [api build 8/8] RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json
-#33 13.64 src/routes/device/device.routes.ts(3,10): error TS2724: '"../../db/schema/alerts.js"' has no exported member named 'alarmSelectSchema'. Did you mean 'alertSelectSchema'?
-#33 13.64 src/routes/device/device.ts(4,10): error TS2305: Module '"../../db/schema/alerts.js"' has no exported member 'alarms'.
-#33 ERROR: process "/bin/sh -c printf '{\\n  \"extends\": \"./tsconfig.json\",\\n  \"compilerOptions\": {\\n    \"noEmit\": false,\\n    \"allowImportingTsExtensions\": false,\\n    \"outDir\": \"./dist\"\\n  }\\n}\\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json" did not complete successfully: exit code: 2
-
 #34 [frontend build 12/12] RUN pnpm -C apps/frontend build
-#34 CANCELED
+#34 14.27 src/components/global-search.tsx(83,21): error TS2322: Type 'string | null' is not assignable to type 'string'.
+#34 14.27   Type 'null' is not assignable to type 'string'.
+#34 14.27 src/components/sectionCards/index.tsx(28,34): error TS2339: Property 'btcustomer' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+#34 14.27 src/components/sectionCards/index.tsx(31,30): error TS2339: Property 'btsite' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+#34 14.27 src/components/sectionCards/index.tsx(34,31): error TS2339: Property 'alarmclearedtime' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+#34 14.27 src/components/sectionCards/index.tsx(39,36): error TS2339: Property 'perceivedseverity' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+#34 14.27 src/routes/dashboard/components/DeviceSeverityMap/components/MarkerPopupContent/index.tsx(44,32): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+#34 14.27   Type 'null' is not assignable to type 'string'.
+#34 14.27 src/routes/dashboard/components/DeviceSeverityMap/helpers.ts(106,9): error TS2322: Type 'string | null' is not assignable to type 'string'.
+#34 14.27   Type 'null' is not assignable to type 'string'.
+#34 14.27 src/routes/dashboard/index.tsx(43,11): error TS2741: Property 'deviceId' is missing in type '{ sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }' but required in type '{ deviceId: string; sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }'.
+#34 14.28 src/routes/device/device.$deviceId.tsx(61,11): error TS2741: Property 'deviceId' is missing in type '{ sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }' but required in type '{ deviceId: string; sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }'.
+#34 14.57  ELIFECYCLE  Command failed with exit code 2.
+#34 ERROR: process "/bin/sh -c pnpm -C apps/frontend build" did not complete successfully: exit code: 2
 ------
- > [api build 8/8] RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json:
-13.64 src/routes/device/device.routes.ts(3,10): error TS2724: '"../../db/schema/alerts.js"' has no exported member named 'alarmSelectSchema'. Did you mean 'alertSelectSchema'?
-13.64 src/routes/device/device.ts(4,10): error TS2305: Module '"../../db/schema/alerts.js"' has no exported member 'alarms'.
+ > [frontend build 12/12] RUN pnpm -C apps/frontend build:
+14.27 src/components/sectionCards/index.tsx(31,30): error TS2339: Property 'btsite' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+14.27 src/components/sectionCards/index.tsx(34,31): error TS2339: Property 'alarmclearedtime' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+14.27 src/components/sectionCards/index.tsx(39,36): error TS2339: Property 'perceivedseverity' does not exist on type '{ id: number; device_name: string | null; first: number | null; last: number | null; clear: number | null; assigned_to: string | null; severity: "LOW" | "MEDIUM" | "HIGH" | "EMERGENCY" | null; ... 5 more ...; deleted_at: string | null; }'.
+14.27 src/routes/dashboard/components/DeviceSeverityMap/components/MarkerPopupContent/index.tsx(44,32): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+14.27   Type 'null' is not assignable to type 'string'.
+14.27 src/routes/dashboard/components/DeviceSeverityMap/helpers.ts(106,9): error TS2322: Type 'string | null' is not assignable to type 'string'.
+14.27   Type 'null' is not assignable to type 'string'.
+14.27 src/routes/dashboard/index.tsx(43,11): error TS2741: Property 'deviceId' is missing in type '{ sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }' but required in type '{ deviceId: string; sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }'.
+14.28 src/routes/device/device.$deviceId.tsx(61,11): error TS2741: Property 'deviceId' is missing in type '{ sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }' but required in type '{ deviceId: string; sortField: string; sortDirection: "desc" | "asc"; searchBy: string; }'.
+14.57  ELIFECYCLE  Command failed with exit code 2.
 ------
 [+] up 0/2
- - Image xalient-npulse-main-api Building                                                                                       57.7s
- - Image pulse-frontend:local    Building                                                                                       57.7s
-api.Dockerfile:14
+ - Image xalient-npulse-main-api Building                                                                                       36.6s
+ - Image pulse-frontend:local    Building                                                                                       36.6s
+frontend.Dockerfile:24
 
 --------------------
 
-  13 |     # Build API - emit JS to dist/
+  22 |     # Install deps and build
 
-  14 | >>> RUN printf '{\n  "extends": "./tsconfig.json",\n  "compilerOptions": {\n    "noEmit": false,\n    "allowImportingTsExtensions": false,\n    "outDir": "./dist"\n  }\n}\n' > apps/api/tsconfig.build.json \
+  23 |     RUN pnpm install --frozen-lockfile
 
-  15 | >>>   && pnpm -C apps/api exec tsc -p tsconfig.build.json
+  24 | >>> RUN pnpm -C apps/frontend build
 
-  16 |
+  25 |
+
+  26 |     # Runtime stage: nginx serving static files
 
 --------------------
 
-target api: failed to solve: process "/bin/sh -c printf '{\\n  \"extends\": \"./tsconfig.json\",\\n  \"compilerOptions\": {\\n    \"noEmit\": false,\\n    \"allowImportingTsExtensions\": false,\\n    \"outDir\": \"./dist\"\\n  }\\n}\\n' > apps/api/tsconfig.build.json   && pnpm -C apps/api exec tsc -p tsconfig.build.json" did not complete successfully: exit code: 2
+
+target frontend: failed to solve: process "/bin/sh -c pnpm -C apps/frontend build" did not complete successfully: exit code: 2 
 
 last line
